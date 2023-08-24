@@ -1,7 +1,51 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
+var descriptionEl = $('#description');
+var saveBtnEl = $('#saveBtn');
+
+
+
+$(function() {
+
+  $(document).ready(function() {
+
+    var currentHour = new Date().getHours();
+
+    $('.time-block').each(function () {
+      var blockId = parseInt($(this).attr('id').split('-')[1]);
+
+      if (blockId < currentHour) {
+        $(this).removeClass('present future').addClass('past');
+      } else if (blockId === currentHour) {
+        $(this).removeClass('past future').addClass('present');
+      } else {
+        $(this).removeClass('past present').addClass('future');
+      }
+    })
+    $('#description').text('');
+    $('#saveBtn').on('click', function() {
+      alert('save');
+    })
+  })
+  
+  renderLastSaved();
+  
+  function displayMessage(type, message) {
+    //console.log(descriptionEl);
+  
+    descriptionEl.textContent = message;
+    descriptionEl.attr("class", type);
+  }
+  function renderLastSaved() {
+    var description = localStorage.getItem('description');
+  
+    if (!description) {
+      return;
+    }
+  
+    descriptionEl.textContent = description;
+  };
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -18,7 +62,20 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
+
+  var description = descriptionEl.value;
+
+    if (description === '') {
+      displayMessage('error', 'Slot cannot be blank, are you even working today?');
+    } else {
+      displayMessage('success', 'Look at you being an adult!');
+
+      localStorage.setItem('description', description);
+      renderLastSaved();
+    };
+
+  
+
   // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
   $('#currentDay').text(today.format('D MMM, YYYY'));

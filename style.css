@@ -3,13 +3,17 @@ body {
   font-size: 16px;
 }
 
+strong {
+  font-weight: bold;
+}
+
 textarea {
   background: transparent;
   border: none;
   resize: none;
   color: #000000;
   border-left: 1px solid black;
-  padding: 10px;
+  padding: 2px;
 }
 
 .description {
@@ -17,7 +21,9 @@ textarea {
 }
 
 .time-block {
-  border-radius: 15px;
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .row {

@@ -5,6 +5,10 @@ Links and Screenshots:
 
 Github:
 
-Deployed Link:
+https://github.com/Saiishago/WorkDay-Scheduler
+
+Deployed Link: 
+
+https://saiishago.github.io/WorkDay-Scheduler/
 
 Screenshots:
