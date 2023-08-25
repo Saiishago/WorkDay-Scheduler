@@ -12,3 +12,7 @@ Deployed Link:
 https://saiishago.github.io/WorkDay-Scheduler/
 
 Screenshots:
+
+![Alt text](main.png)
+
+![Alt text](<main w:console.png>)

@@ -1,6 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 var descriptionEl = $('#description');
 var secondDescriptionEl = $('#secondDescription');
 var saveBtnEl = $('#saveBtn');
@@ -20,19 +17,6 @@ var savingBEl = $('#savingB');
 var lastDescriptionEl = $('#lastDescription');
 var savedBEl = $('#savedB');
 
-$(document).ready(function() {
-  const persistentText = $("#persistent-text");
-  const savedText = localStorage.getItem("savedText");
-
-  if (savedText) {
-    persistentText.text(savedText);
-  }
-
-  persistentText.on("input", function() {
-    const newText = persistentText.text();
-    localStorage.setItem("savedText", newText);
-  });
-
 
 
 $(function() {
@@ -51,10 +35,23 @@ $(function() {
       } else {
         $(this).removeClass('past present').addClass('future');
       }
-    })
-    //From here
-
+    });
     
+
+    $(document).ready(function() {
+      const persistentText = $("#persistent-text");
+      const savedText = localStorage.getItem("savedText");
+    
+      if (savedText) {
+        persistentText.text(savedText);
+      }
+    
+      persistentText.on("input", function() {
+        const newText = persistentText.text();
+        localStorage.setItem("savedText", newText);
+      });
+    
+    });
     $('#description').text('');
     $('#saveBtn').on('click', function() {
      
@@ -62,7 +59,7 @@ $(function() {
  
 
   
-   var savedText =localStorage.getItem('');
+   var savedText =localStorage.getItem('description');
    if (savedText) {
      $('#description').val(savedText);
    };
@@ -90,7 +87,7 @@ $(function() {
   
     descriptionEl.textContent = description;
    };
-   //Till here
+  
 
    $('#secondDescription').text('');
    $('#saveButton').on('click', function() {
@@ -125,7 +122,8 @@ $(function() {
 
     secondDescriptionEl.textContent = secondDescription;
    };
-   //from here
+  
+
    $('#thirdDescription').text('');
    $('#saveB').on('click', function() {
    
@@ -162,10 +160,8 @@ $(function() {
 
    thirdDescriptionEl.textContent = thirdDescription;
    };
-   //till here
+  
 
-
-   //from here
    $('#fourthDescription').text('');
    $('#saveB').on('click', function() {
  
@@ -202,9 +198,8 @@ $(function() {
 
    fourthDescriptionEl.textContent = fourthDescription;
    };
-   //till here
+  
 
-   //from here
    $('#fifthDescription').text('');
    $('#sBtn').on('click', function() {
  
@@ -241,9 +236,8 @@ $(function() {
 
    fifthDescriptionEl.textContent = fifthDescription;
    };
-   //till here
+ 
 
-   //from here
    $('#sixthDescription').text('');
    $('#savingBtn').on('click', function() {
  
@@ -280,9 +274,8 @@ $(function() {
 
    sixthDescriptionEl.textContent = sixthDescription;
    };
-   //till here
+  
 
-   //from here
    $('#seventhDescription').text('');
    $('#savingButton').on('click', function() {
  
@@ -292,11 +285,11 @@ $(function() {
 
    var savedText =localStorage.getItem('');
    if (savedText) {
-   $('#sevethDescription').val(savedText);
+   $('#seventhDescription').val(savedText);
    };
 
    $('#savingButton').click(function() {
-   var newText = $('#sevethDescription').val();
+   var newText = $('#seventhDescription').val();
 
    localStorage.setItem('hour-15', newText);
    alert('Thirty minutes left!');
@@ -307,7 +300,7 @@ $(function() {
    function displayMessage(type, message) {
 
 
-   seventhDescriptionEl.textContent = message;
+    seventhDescriptionEl.textContent = message;
    seventhDescriptionEl.attr("class", type);
    };
    function renderLastSaved() {
@@ -319,9 +312,8 @@ $(function() {
 
    seventhDescriptionEl.textContent = seventhDescription;
    };
-   //till here
+  
 
-   //from here
    $('#eighthDescription').text('');
    $('#savingB').on('click', function() {
  
@@ -358,9 +350,8 @@ $(function() {
 
    eighthDescriptionEl.textContent = eighthDescription;
    };
-   //till here
+ 
 
-   //from here
    $('#lastDescription').text('');
    $('#savedB').on('click', function() {
  
@@ -395,11 +386,10 @@ $('#lastDescription').val(savedText);
    };
    });
 
-    //till here
+  
    var today = dayjs();
    $('#currentDay').text(today.format('D MMM, YYYY'));
    });
   });
 
-});
-});
+})
