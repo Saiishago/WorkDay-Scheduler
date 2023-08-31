@@ -17,7 +17,8 @@ var savingBEl = $('#savingB');
 var lastDescriptionEl = $('#lastDescription');
 var savedBEl = $('#savedB');
 
-
+var today = dayjs();
+$('#today').text(today.format('D MMM, YYYY'));
 
 $(function() {
 
@@ -40,7 +41,7 @@ $(function() {
 
     $(document).ready(function() {
       const persistentText = $("#persistent-text");
-      const savedText = localStorage.getItem("savedText");
+      const savedText = localStorage.getItem("newText");
     
       if (savedText) {
         persistentText.text(savedText);
@@ -59,7 +60,7 @@ $(function() {
  
 
   
-   var savedText =localStorage.getItem('description');
+   var savedText =localStorage.getItem('hour-9');
    if (savedText) {
      $('#description').val(savedText);
    };
@@ -69,9 +70,10 @@ $(function() {
 
     localStorage.setItem('hour-9', newText);
     alert('Look at you being an adult!');
+
+    renderLastSaved();
    });
   
-   renderLastSaved();
   
    function displayMessage(type, message) {
   
@@ -80,6 +82,12 @@ $(function() {
    };
    function renderLastSaved() {
     var description = localStorage.getItem('hour-9');
+
+    $('#description').text('');
+    $('#saveBtn').on('click', function() {
+     
+    });
+ 
   
     if (!description) {
       return;
@@ -87,8 +95,8 @@ $(function() {
   
     descriptionEl.textContent = description;
    };
-  
 
+   
    $('#secondDescription').text('');
    $('#saveButton').on('click', function() {
 
@@ -103,9 +111,11 @@ $(function() {
     var newText = $('#secondDescription').val();
 
     localStorage.setItem('hour-10', newText);
-    alert("Let's do this!");
-   });
+    alert('Keep up the good work!');
 
+    renderLastSaved('hour-10');
+
+   });
    renderLastSaved();
 
    function displayMessage(type, message) {
@@ -141,9 +151,9 @@ $(function() {
 
    localStorage.setItem('hour-11', newText);
    alert('Come on, a little more to go!');
+   renderLastSaved();
    });
 
-   renderLastSaved();
 
    function displayMessage(type, message) {
  
@@ -179,6 +189,7 @@ $(function() {
 
    localStorage.setItem('hour-12', newText);
    alert('One more before lunch!');
+   renderLastSaved();
    });
 
    renderLastSaved();
@@ -217,6 +228,7 @@ $(function() {
 
    localStorage.setItem('hour-13', newText);
    alert('No this is the ONE more before lunch!');
+   renderLastSaved();
    });
 
    renderLastSaved();
@@ -255,6 +267,7 @@ $(function() {
 
    localStorage.setItem('hour-14', newText);
    alert('Keep pushing!');
+   renderLastSaved();
    });
 
    renderLastSaved();
@@ -293,6 +306,7 @@ $(function() {
 
    localStorage.setItem('hour-15', newText);
    alert('Thirty minutes left!');
+   renderLastSaved();
    });
 
    renderLastSaved();
@@ -331,6 +345,7 @@ $(function() {
 
    localStorage.setItem('hour-16', newText);
    alert('Two more thirty minutes!');
+   renderLastSaved();
    });
 
    renderLastSaved();
@@ -354,10 +369,11 @@ $(function() {
 
    $('#lastDescription').text('');
    $('#savedB').on('click', function() {
+
  
    var savedText =localStorage.getItem('');
    if (savedText) {
-$('#lastDescription').val(savedText);
+   $('#lastDescription').val(savedText);
    };
 
    $('#savedB').click(function() {
@@ -375,7 +391,7 @@ $('#lastDescription').val(savedText);
    lastDescriptionEl.textContent = message;
    lastDescriptionEl.attr("class", type);
    };
-   function renderLastSaved() {
+   function renderLastSaved() {    
    var lastDescription = localStorage.getItem('hour-17');
 
    if (!lastDescription) {
@@ -387,8 +403,7 @@ $('#lastDescription').val(savedText);
    });
 
   
-   var today = dayjs();
-   $('#currentDay').text(today.format('D MMM, YYYY'));
+   
    });
   });
 
